@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products by Type</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #333;
+    }
+
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .product-card {
+      display: block;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background-color: #fff;
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    .product-card h3 {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .product-card p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Products</h1>
+
+  {% for type in types %}
+    <h2>{{ type.name }}</h2>
+    <div class="products-container">
+      {% for shop in type.shops.all %}
+        <a href="{% url 'detail' shop.id %}" class="product-card">
+          <img src="{{ shop.image.url }}" alt="{{ shop.title }}">
+          <h3>{{ shop.title }}</h3>
+          <p><strong>Price :</strong> ${{ shop.price }}</p>
+          <p>{{ shop.content }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+</body>
+</html>
+
+
+{% endblock content %}

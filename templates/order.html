@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Buyurtma Sahifasi</h2>
+
+<!-- ✅ Xabarlar ko‘rsatish -->
+{% if messages %}
+  {% for message in messages %}
+    <div style="padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px; margin-bottom: 15px;">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<!-- ✅ Mahsulot haqida -->
+<div style="margin-top: 20px;">
+  <p><strong>Mahsulot :</strong> {{ shops.title }}</p>
+  <p><strong>Narxi :</strong>  ${{ shops.price }}</p>
+</div>
+
+<!-- ✅ Forma -->
+<form method="post" style="margin-top: 30px;">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Buyurtmani Yuborish</button>
+</form>
+
+{% endblock %}
+

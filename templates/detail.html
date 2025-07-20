@@ -24,7 +24,11 @@
       <p><strong>Category :</strong> {{ shops.type.category.name }} - {{ shops.type.name }}</p>
     </div>
 
-    <button>Add to Cart</button>
+    <div style="margin-top: 1em;">
+      <a href="{% url 'order' shops.id %}">
+        <button>Buyurtma qilish</button>
+      </a>
+    </div>
   </section>
 
 </body>

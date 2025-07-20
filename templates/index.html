@@ -5,6 +5,15 @@
 
 <title>My Shop</title>
 
+
+{% if messages %}
+  {% for message in messages %}
+    <div style="background-color: #d4edda; color: #155724; padding: 10px; border: 1px solid #c3e6cb; border-radius: 5px; margin-bottom: 1em;">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
 <head>
   <style>
     .hero { padding: 2em; text-align: center; background: #eee; }

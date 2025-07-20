@@ -1,9 +1,10 @@
 
-from shop.views import detail, home, products
+from shop.views import IndexView, Products, Detail, Order_View
 from django.urls import path
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('products/', products, name='products'),
-    path('detail/<int:pk>/', detail, name='detail'),
+    path('', IndexView.as_view(), name='home'),
+    path('products/', Products.as_view(), name='products'),
+    path('detail/<int:pk>/', Detail.as_view(), name='detail'),
+    path('order/<int:pk>', Order_View.as_view(), name='order')
 ]

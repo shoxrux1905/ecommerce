@@ -6,12 +6,14 @@ class Category(models.Model) :
     def __str__(self):
         return self.name
 
+
 class Types(models.Model) :
     name = models.CharField(max_length=50)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null = True, related_name='categories')
     
     def __str__(self):
         return self.name
+    
     
 class Shop(models.Model) :
     
@@ -24,3 +26,13 @@ class Shop(models.Model) :
     def __str__(self):
         return self.title
 
+
+class Order(models.Model) :
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    card_number = models.CharField(max_length=16)
+    email = models.EmailField(max_length=254)
+    
+    def __str__(self):
+        return self.first_name
+    
